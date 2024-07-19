@@ -19,7 +19,7 @@ sanity check --flag_format FLAG{ --zip ./tests/check_zip_test/dist.zip
 
 ## usage (service)
 
-![a](![a](https://i.gyazo.com/cd6399180bd7e49ddf21e1a769b4f31e.png))
+![a](https://i.gyazo.com/cd6399180bd7e49ddf21e1a769b4f31e.png)
 
 for challenges that have service files (web, pwn, whatever), you normally want to give src to participants; we just package it and check whether we left any flags behind.
 

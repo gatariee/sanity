@@ -15,7 +15,7 @@ var serviceCmd = &cobra.Command{
 		ff, _ := cmd.Flags().GetString("ff")
 		exclude, _ := cmd.Flags().GetString("exclude")
 		batch, _ := cmd.Flags().GetBool("batch")
-		var temp_path string = "temp"
+		temp_path, _ := cmd.Flags().GetString("name")
 
 		err := service.PrepareService(input, ff, exclude, batch, temp_path)
 		if err != nil {
@@ -42,6 +42,9 @@ var serviceCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(serviceCmd)
+
+	serviceCmd.Flags().String("name", "", "name of the folder to be created")
+	serviceCmd.MarkFlagRequired("name")
 
 	serviceCmd.Flags().String("input", "", "path to service file")
 	serviceCmd.MarkFlagRequired("input")

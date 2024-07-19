@@ -14,5 +14,5 @@ sanity [command] [args]
 for challenges that have service files (web, pwn, whatever), you normally want to give src to participants; we just package it and check whether we left any flags behind.
 
 ```
-sanity_x64 service --ff FLAG --input ./tests/service_test --zip dist.zip --name challenge --cleanup --batch
+sanity_x64 service --flag_format FLAG --input ./tests/service_test --zip dist.zip --name challenge --cleanup --batch
 ```

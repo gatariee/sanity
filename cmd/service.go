@@ -12,7 +12,7 @@ var serviceCmd = &cobra.Command{
 	Long:  `prep service files without having to worry about accidentally leaving a flag in there`,
 	Run: func(cmd *cobra.Command, args []string) {
 		input, _ := cmd.Flags().GetString("input")
-		ff, _ := cmd.Flags().GetString("ff")
+		ff, _ := cmd.Flags().GetString("flag_format")
 		exclude, _ := cmd.Flags().GetString("exclude")
 		batch, _ := cmd.Flags().GetBool("batch")
 		temp_path, _ := cmd.Flags().GetString("name")
@@ -49,8 +49,8 @@ func init() {
 	serviceCmd.Flags().String("input", "", "path to service file")
 	serviceCmd.MarkFlagRequired("input")
 
-	serviceCmd.Flags().String("ff", "", "flag format, only prefix") // i.e if FLAG{...} then FLAG
-	serviceCmd.MarkFlagRequired("ff")
+	serviceCmd.Flags().String("flag_format", "", "flag format, only prefix") // i.e if FLAG{...} then FLAG
+	serviceCmd.MarkFlagRequired("flag_format")
 
 	serviceCmd.Flags().String("zip", "", "output name of zip file, doesn't zip if not provided")
 

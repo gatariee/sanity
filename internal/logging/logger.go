@@ -18,3 +18,7 @@ func LogWarn(format string, args ...interface{}) {
 	msg := fmt.Sprintf(format, args...)
 	fmt.Printf("[WARN] %s\n", msg)
 }
+
+func LogNewLine() {
+	fmt.Println()
+}

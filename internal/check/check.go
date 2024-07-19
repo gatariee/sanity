@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/gatariee/sanity/internal/logging"
+	"github.com/gatariee/sanity/internal/utility"
 )
 
 func CheckDir(dir string, ff string) error {
@@ -30,8 +31,33 @@ func CheckDir(dir string, ff string) error {
 }
 
 func CheckZip(zip string, ff string) error {
-	fmt.Println("checking zip")
-	// not implemented, lazy
+	absPath, err := filepath.Abs(zip)
+	if err != nil {
+		return err
+	}
+
+	err = os.MkdirAll(absPath+"_unzipped.temp", os.ModePerm)
+	if err != nil {
+		return err
+	}
+
+	err = utility.Unzip(absPath, absPath+"_unzipped.temp")
+	if err != nil {
+		return err
+	}
+
+	err = CheckDir(absPath+"_unzipped.temp", ff)
+	if err != nil {
+		return err
+	}
+
+	logging.LogNewLine()
+	logging.LogInfo("removing temp folder %s", absPath+"_unzipped.temp")
+	err = utility.RemoveFile(absPath + "_unzipped.temp")
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 

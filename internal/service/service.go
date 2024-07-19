@@ -122,7 +122,7 @@ func CheckFlagFile(absPath string, flagFormat string, exclude string, batch bool
 			}
 		}
 
-		if info.Size() > 0 {
+		if info.Size() > 0 && !info.IsDir() {
 			fileContent := make([]byte, info.Size())
 			file, err := os.Open(path)
 			if err != nil {
@@ -190,13 +190,6 @@ func CheckFlagFile(absPath string, flagFormat string, exclude string, batch bool
 	return nil
 }
 
-func ZipDist() error {
-	/**
-	https://golangcode.com/create-zip-files-in-go/
-	*/
-	return nil
-}
-
 func PrepareService(servicePath string, flagFormat string, exclude string, batch bool, tempPath string) error {
 	
 	_, err := os.Stat(servicePath)
@@ -240,6 +233,7 @@ func PrepareService(servicePath string, flagFormat string, exclude string, batch
 	/**
 	Did we accidentally leave a flag in the service folder, or in the contents of a file?
 	*/
+
 	err = CheckFlagFile(distAbsPath, flagFormat, exclude, batch)
 	if err != nil {
 		return err
